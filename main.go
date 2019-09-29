@@ -16,7 +16,7 @@ type Todo struct {
 
 //DB初期化
 func dbInit() {
-	db, err := grom.Open("sqlite3", "test.sqlite3")
+	db, err := gorm.Open("sqlite3", "test.sqlite3")
 	if err != nil {
 		panic("error dbInit")
 	}
@@ -30,7 +30,7 @@ func dbInsert(text string, status string) {
 	if err != nil {
 		panic("error dbInsert")
 	}
-	db.Create(&Todo{Text: test, Status: status})
+	db.Create(&Todo{Text: text, Status: status})
 	defer db.Close()
 }
 
@@ -130,7 +130,7 @@ func main() {
 	})
 
 	//Delete check
-	router.Get("/delete_check/:id", func(ctx *gin.Context) {
+	router.GET("/delete_check/:id", func(ctx *gin.Context) {
 		n := ctx.Param("id")
 		id, err := strconv.Atoi(n)
 		if err != nil {
