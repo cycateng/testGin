@@ -9,7 +9,7 @@ import (
 )
 
 type Todo struct {
-	gorm.model
+	gorm.Model
 	Text	string
 	Status	string
 }
@@ -93,7 +93,7 @@ func main() {
 	router.GET("/", func(ctx *gin.Context) {
 		todos := dbGetAll()
 		ctx.HTML(200, "index.html", gin.H{
-			"todos": todos
+			"todos": todos,
 		})
 	})
 
