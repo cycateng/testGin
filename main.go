@@ -35,14 +35,14 @@ func dbInsert(text string, status string) {
 }
 
 //DB更新
-func dbUpdate(id int, test string, status string) {
+func dbUpdate(id int, text string, status string) {
 	db, err := gorm.Open("sqlite3", "test.sqlite3")
 	if err != nil {
 		panic("error dbUpdate")
 	}
 	var todo Todo
 	db.First(&todo, id)
-	todo.Test = text
+	todo.Text = text
 	todo.Status = status
 	db.Save(&todo)
 	db.Close()
