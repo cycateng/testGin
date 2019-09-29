@@ -40,6 +40,7 @@ func dbUpdate(id int, test string, status string) {
 	if err != nil {
 		panic("error dbUpdate")
 	}
+	var todo Todo
 	db.First(&todo, id)
 	todo.Test = text
 	todo.Status = status
